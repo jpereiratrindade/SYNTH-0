@@ -78,3 +78,8 @@ post-convergence `KEEP`.
 
 - `docs/SYNTH-ARCH-001-v0.1.0.md`
 - `docs/SYNTH-BOOTSTRAP-001-v0.1.0.md`
+
+## License
+
+SYNTH-0 is licensed under the GNU General Public License v3.0
+(`GPL-3.0-only`). See [LICENSE](LICENSE).

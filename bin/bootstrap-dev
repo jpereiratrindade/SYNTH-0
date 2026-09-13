@@ -1,0 +1,60 @@
+#!/usr/bin/env bash
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+
+need() {
+  command -v "$1" >/dev/null 2>&1 || {
+    printf 'missing required command: %s\n' "$1" >&2
+    return 1
+  }
+}
+
+missing=0
+for cmd in cmake ninja git systemctl node npm; do
+  need "$cmd" || missing=1
+done
+if [[ "$missing" -ne 0 ]]; then
+  printf 'Install the missing host tools before bootstrapping. No host mutation was attempted.\n' >&2
+  exit 2
+fi
+
+printf '\n=== CONFIGURE C++ ===\n'
+cmake --preset dev || exit $?
+printf '\n=== BUILD C++ ===\n'
+cmake --build --preset dev || exit $?
+printf '\n=== TEST C++ / CONTRACTS ===\n'
+ctest --preset dev || exit $?
+
+printf '\n=== BUILD WEB ===\n'
+(
+  cd "$ROOT/web" || exit 1
+  npm install --no-audit --no-fund || exit $?
+  npm run build || exit $?
+) || exit $?
+
+printf '\n=== INSTALL USER SYSTEMD UNITS ===\n'
+UNIT_DIR="$HOME/.config/systemd/user"
+mkdir -p "$UNIT_DIR" || exit $?
+for unit in synth0-pulso.service synth0-trama.service synth0-lente.service synth0-controller.service synth0.target; do
+  cp "$ROOT/build/dev/packaging/systemd/$unit" "$UNIT_DIR/$unit" || exit $?
+done
+systemctl --user daemon-reload || exit $?
+systemctl --user enable synth0.target >/dev/null || exit $?
+systemctl --user enable synth0-controller.service >/dev/null || exit $?
+
+printf '\n=== VALIDATE DECLARATIONS ===\n'
+"$ROOT/build/dev/controller/synth-controller" validate || exit $?
+
+cat <<EOF
+
+SYNTH-0 bootstrap completed.
+
+Lifecycle:
+  $ROOT/bin/synth run --target dev
+
+Second run (must be NO_OP):
+  $ROOT/bin/synth run --target dev
+
+Living Topology:
+  systemctl --user start synth0-controller.service
+  http://127.0.0.1:9180
+EOF

@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "synth.relation/1.0.0",
+  "type": "object",
+  "required": ["schema", "relation"],
+  "properties": {
+    "schema": {"const": "synth.relation/1.0.0"},
+    "relation": {
+      "type": "object",
+      "required": ["id", "kind", "version", "required", "from_authority", "to_authority", "observer", "probe_path", "requires_contract"]
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,22 @@
+name: ci
+on:
+  push:
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container: fedora:44
+    steps:
+      - name: Install toolchain
+        run: dnf -y install git gcc-c++ cmake ninja-build openssl-devel nodejs npm
+      - uses: actions/checkout@v4
+      - name: Configure
+        run: cmake --preset dev
+      - name: Build
+        run: cmake --build --preset dev
+      - name: Test
+        run: ctest --preset dev
+      - name: Web
+        working-directory: web
+        run: npm install --no-audit --no-fund && npm run build

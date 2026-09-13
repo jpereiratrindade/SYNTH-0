@@ -1,0 +1,7 @@
+[Unit]
+Description=SYNTH-0 synthetic ecosystem
+Wants=synth0-pulso.service synth0-trama.service synth0-lente.service
+After=network.target
+
+[Install]
+WantedBy=default.target

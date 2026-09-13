@@ -1,0 +1,21 @@
+schema = "synth.system/1.0.0"
+
+[system]
+id = "pulso"
+authority = "synth.pulso"
+kind = "synthetic-system"
+version = "0.1.0"
+host = "127.0.0.1"
+port = 9201
+unit = "synth0-pulso.service"
+required = true
+
+capabilities = [
+  "signal.observe",
+  "signal.rate"
+]
+
+[resources]
+max_memory_mb = 128
+max_queue_items = 4096
+target_cpu_percent = 25

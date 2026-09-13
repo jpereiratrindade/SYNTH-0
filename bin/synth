@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+BIN="$ROOT/build/dev/controller/synth-controller"
+if [[ ! -x "$BIN" ]]; then
+  printf 'SYNTH-0 is not built. Run: %s/bin/bootstrap-dev\n' "$ROOT" >&2
+  exit 2
+fi
+exec "$BIN" "$@"

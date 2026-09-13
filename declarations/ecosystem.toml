@@ -1,0 +1,14 @@
+schema = "synth.ecosystem/1.0.0"
+id = "SYNTH-0"
+version = "0.1.0"
+status = "experimental"
+
+[principles]
+ready_not_complete = true
+declaration_is_not_observation = true
+post_convergence_observation_required = true
+no_cross_boundary_private_writes = true
+
+[controller]
+host = "127.0.0.1"
+port = 9180

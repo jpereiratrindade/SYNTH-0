@@ -1,0 +1,13 @@
+[Unit]
+Description=SYNTH-0 Lente
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=@SYNTH_LENTE_BIN@
+Restart=no
+KillSignal=SIGTERM
+TimeoutStopSec=3
+
+[Install]
+WantedBy=synth0.target

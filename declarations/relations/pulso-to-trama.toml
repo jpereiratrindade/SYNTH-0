@@ -1,0 +1,12 @@
+schema = "synth.relation/1.0.0"
+
+[relation]
+id = "pulso-to-trama"
+kind = "fact-flow"
+version = "1"
+required = true
+from_authority = "synth.pulso"
+to_authority = "synth.trama"
+observer = "trama"
+probe_path = "/api/v1/relations/pulso"
+requires_contract = "synth.contract.signal/1.0.0"

@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "synth.system/1.0.0",
+  "type": "object",
+  "required": ["schema", "system", "resources"],
+  "properties": {
+    "schema": {"const": "synth.system/1.0.0"},
+    "system": {
+      "type": "object",
+      "required": ["id", "authority", "kind", "version", "host", "port", "unit", "required", "capabilities"]
+    },
+    "resources": {
+      "type": "object",
+      "required": ["max_memory_mb", "max_queue_items", "target_cpu_percent"]
+    }
+  },
+  "additionalProperties": true
+}

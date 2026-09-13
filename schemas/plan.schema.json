@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "synth.plan/1.0.0",
+  "type": "object",
+  "required": ["schema", "action", "reason", "targets", "evidence"],
+  "properties": {
+    "schema": {"const": "synth.plan/1.0.0"},
+    "action": {"enum": ["KEEP", "REPAIR", "RECONFIGURE", "DEGRADED", "BLOCKED"]},
+    "reason": {"type": "string"},
+    "targets": {"type": "array", "items": {"type": "string"}},
+    "evidence": {"type": "string"}
+  },
+  "additionalProperties": true
+}

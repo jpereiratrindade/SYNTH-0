@@ -1,0 +1,13 @@
+[Unit]
+Description=SYNTH-0 Trama
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=@SYNTH_TRAMA_BIN@
+Restart=no
+KillSignal=SIGTERM
+TimeoutStopSec=3
+
+[Install]
+WantedBy=synth0.target

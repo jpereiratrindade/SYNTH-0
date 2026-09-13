@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "synth.evidence/1.0.0",
+  "type": "object",
+  "required": ["schema", "observed_at", "declaration_digest", "systems", "relations"],
+  "properties": {
+    "schema": {"const": "synth.evidence/1.0.0"},
+    "observed_at": {"type": "string"},
+    "declaration_digest": {"type": "string"},
+    "systems": {"type": "array"},
+    "relations": {"type": "array"}
+  },
+  "additionalProperties": true
+}

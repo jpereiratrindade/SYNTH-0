@@ -1,0 +1,12 @@
+[Unit]
+Description=SYNTH-0 factual controller and Living Topology gateway
+After=synth0.target
+
+[Service]
+Type=simple
+ExecStart=@SYNTH_CONTROLLER_BIN@ serve
+Restart=on-failure
+RestartSec=1
+
+[Install]
+WantedBy=default.target

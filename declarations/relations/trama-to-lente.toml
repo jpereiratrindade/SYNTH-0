@@ -1,0 +1,12 @@
+schema = "synth.relation/1.0.0"
+
+[relation]
+id = "trama-to-lente"
+kind = "pattern-flow"
+version = "1"
+required = true
+from_authority = "synth.trama"
+to_authority = "synth.lente"
+observer = "lente"
+probe_path = "/api/v1/relations/trama"
+requires_contract = "synth.contract.pattern/1.0.0"

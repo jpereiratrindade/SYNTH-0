@@ -1,0 +1,7 @@
+build/
+.state/
+.evidence/
+web/node_modules/
+web/dist/
+*.swp
+*.tmp

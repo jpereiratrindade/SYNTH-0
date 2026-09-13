@@ -1,0 +1,12 @@
+schema = "synth.relation/1.0.0"
+
+[relation]
+id = "lente-to-pulso"
+kind = "intent-proposal"
+version = "1"
+required = true
+from_authority = "synth.lente"
+to_authority = "synth.pulso"
+observer = "lente"
+probe_path = "/api/v1/intent"
+requires_contract = "synth.contract.intent/1.0.0"

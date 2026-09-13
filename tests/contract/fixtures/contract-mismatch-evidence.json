@@ -1,0 +1,14 @@
+{
+  "schema": "synth.evidence/1.0.0",
+  "observed_at": "fixture",
+  "declaration_digest": "fixture",
+  "systems": [],
+  "relations": [
+    {
+      "id": "pulso-to-trama",
+      "required": true,
+      "reachable": true,
+      "contract_ok": false
+    }
+  ]
+}
